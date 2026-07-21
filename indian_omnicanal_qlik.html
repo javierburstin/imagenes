@@ -1,0 +1,370 @@
+<!-- Mockup Qlik Sense - Indian Omnicanal Analytics (GA + ERP) -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indian · Omnicanal Analytics — Mockup Qlik Sense</title>
+<style>
+  :root{
+    --bg:#eef0f2; --card:#ffffff; --line:#e2e5e8; --line2:#d7dbdf;
+    --ink:#20262b; --muted:#6b7178; --ax:#9aa1a8;
+    --green:#4a9d2f; --greenD:#2f7d1c; --blue:#2e77bd; --blueL:#6aa9e0;
+    --purple:#8a5fc0; --orange:#e08a2e; --teal:#199a95; --red:#cf4436; --gold:#c9a13b;
+    --grid:#eef0f2; --headbar:#1f262c;
+    --font:"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);font-family:var(--font);color:var(--ink);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1200px;margin:0 auto}
+
+  /* Top app bar */
+  .topbar{background:var(--headbar);color:#fff;display:flex;align-items:center;gap:14px;padding:9px 18px}
+  .brand{display:flex;align-items:baseline;gap:9px}
+  .brand b{font-size:16px;letter-spacing:.06em;font-weight:700}
+  .brand .sub{font-size:11px;color:#a8b0b8;letter-spacing:.14em;text-transform:uppercase}
+  .topbar .spacer{flex:1}
+  .topbar .app{font-size:12px;color:#c6ccd2;display:flex;align-items:center;gap:7px}
+  .qmark{width:15px;height:15px;border-radius:3px;background:var(--green);display:inline-block}
+  .topbar .ic{width:26px;height:26px;border-radius:5px;border:1px solid #3a444d;color:#c6ccd2;
+    display:grid;place-items:center;font-size:13px}
+
+  /* Selection bar */
+  .selbar{background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;
+    gap:8px;padding:7px 16px;flex-wrap:wrap}
+  .selbar .lbl{font-size:11px;color:var(--muted);margin-right:2px}
+  .tok{display:inline-flex;align-items:center;gap:7px;background:#eef7ea;border:1px solid #cfe6c4;
+    color:var(--greenD);border-radius:4px;padding:4px 9px;font-size:12px;font-weight:600}
+  .tok .x{color:#8fb684;font-weight:700}
+  .tok.grey{color:#5a616a;background:#f2f4f6;border-color:var(--line2)}
+  .tok.grey .x{color:#a7adb4}
+  .selbar .search{margin-left:auto;font-size:12px;color:var(--ax);border:1px solid var(--line2);
+    border-radius:4px;padding:4px 10px;min-width:170px}
+
+  /* Sheet tabs */
+  .tabs{background:#f6f7f8;border-bottom:1px solid var(--line);display:flex;padding:0 12px;gap:2px}
+  .tab{padding:9px 16px;font-size:13px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;
+    user-select:none;white-space:nowrap}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--green);border-bottom-color:var(--green);font-weight:600;background:#fff}
+
+  /* Sheet grid */
+  .sheet{display:none;grid-template-columns:repeat(12,1fr);gap:9px;padding:12px}
+  .sheet.on{display:grid}
+  .obj{background:var(--card);border:1px solid var(--line);border-radius:4px;display:flex;flex-direction:column;min-height:60px}
+  .obj-h{display:flex;align-items:center;justify-content:space-between;padding:8px 11px 6px;
+    font-size:12.5px;font-weight:600;color:#3c434a;border-bottom:1px solid #f0f2f4}
+  .obj-h .men{color:#c2c8ce;font-size:14px;letter-spacing:1px}
+  .obj-b{padding:8px 10px 10px;flex:1;display:flex;flex-direction:column;justify-content:center}
+
+  /* KPI */
+  .kpirow{grid-column:span 12;display:grid;gap:9px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px 12px;position:relative;overflow:hidden}
+  .kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green)}
+  .kpi.b::before{background:var(--blue)} .kpi.p::before{background:var(--purple)}
+  .kpi.o::before{background:var(--orange)} .kpi.t::before{background:var(--teal)} .kpi.g::before{background:var(--gold)}
+  .kpi-l{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.01em;min-height:26px}
+  .kpi-v{font-size:22px;font-weight:700;color:var(--ink);line-height:1.1;margin-top:3px}
+  .kpi-d{font-size:11px;margin-top:5px;font-weight:600}
+  .kpi-d span{color:var(--ax);font-weight:400}
+  .pos{color:var(--green)} .neg{color:var(--red)}
+
+  /* SVG */
+  svg.cx{width:100%;height:100%;display:block}
+  text.ax{fill:var(--ax);font-size:8.5px;font-family:var(--font)}
+  text.axx{fill:var(--muted);font-size:8.5px;font-family:var(--font)}
+  text.lg{fill:#4a5157;font-size:9.5px;font-family:var(--font)}
+  text.fnv{fill:#1a1f24;font-size:11px;font-weight:700;font-family:var(--font)}
+  text.fnl{fill:#2b3138;font-size:8.5px;font-weight:600;font-family:var(--font)}
+
+  /* horizontal bars */
+  .bh{display:flex;flex-direction:column;gap:9px;width:100%;padding:2px 0}
+  .bhr{display:grid;grid-template-columns:78px 1fr 62px;align-items:center;gap:8px;font-size:11.5px}
+  .bhl{color:#4a5157;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bht{background:#f1f3f5;border-radius:3px;height:14px;overflow:hidden}
+  .bhf{display:block;height:100%;border-radius:3px}
+  .bhv{text-align:right;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:11.5px}
+  th{text-align:left;color:var(--muted);font-weight:600;padding:6px 8px;border-bottom:1px solid var(--line2);position:sticky;top:0;background:#fff}
+  th.r,td.r{text-align:right;font-variant-numeric:tabular-nums}
+  td{padding:6px 8px;border-bottom:1px solid #f1f3f5;color:#333}
+  tr:hover td{background:#f7fbf5}
+  .chip{display:inline-block;padding:1px 7px;border-radius:9px;font-size:10.5px;font-weight:600}
+
+  .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:10.5px;color:#4a5157;padding:2px 4px 0}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+  .foot{padding:10px 16px 22px;color:#98a0a7;font-size:11px;text-align:center}
+</style>
+
+<div class="wrap">
+  <div class="topbar">
+    <span class="qmark"></span>
+    <div class="brand"><b>INDIAN</b><span class="sub">Omnicanal Analytics</span></div>
+    <div class="spacer"></div>
+    <div class="app"><span>App:</span> Comportamiento de Usuarios · GA + ERP</div>
+    <div class="ic">☆</div><div class="ic">⤓</div><div class="ic">⋯</div>
+  </div>
+
+  <div class="selbar">
+    <span class="lbl">Selecciones:</span>
+    <span class="tok">Período: Últimos 30 días <span class="x">✕</span></span>
+    <span class="tok grey">Canal: Todos <span class="x">▾</span></span>
+    <span class="tok grey">Categoría: Todas <span class="x">▾</span></span>
+    <span class="tok grey">Local: Todos <span class="x">▾</span></span>
+    <span class="search">🔍  Buscar valores…</span>
+  </div>
+
+  <div class="tabs">
+    <div class="tab on" data-s="1">1 · Dashboard Integral</div>
+    <div class="tab" data-s="2">2 · Comportamiento Web (GA)</div>
+    <div class="tab" data-s="3">3 · Comercial por Producto (ERP)</div>
+  </div>
+
+  <div id="s1" class="sheet on"></div>
+  <div id="s2" class="sheet"></div>
+  <div id="s3" class="sheet"></div>
+
+  <div class="foot">Mockup de demostración · Qlik Sense · datos ilustrativos — QBIC Proyectos / QARight</div>
+</div>
+
+<script>
+/* ---------- palette + format ---------- */
+const C={green:'#4a9d2f',greenD:'#2f7d1c',blue:'#2e77bd',blueL:'#6aa9e0',purple:'#8a5fc0',
+  orange:'#e08a2e',teal:'#199a95',red:'#cf4436',gold:'#c9a13b',gray:'#9aa1a8',grid:'#eef0f2',ax:'#9aa1a8'};
+const CAT=[C.green,C.blue,C.purple,C.orange,C.teal,C.red,C.gold,C.blueL];
+const nf=new Intl.NumberFormat('es-UY');
+const nf1=new Intl.NumberFormat('es-UY',{minimumFractionDigits:1,maximumFractionDigits:1});
+const f=n=>nf.format(Math.round(n));
+const money=n=>n>=1e6?'$U '+nf1.format(n/1e6)+'M':n>=1e3?'$U '+f(n/1e3)+'K':'$U '+f(n);
+const pct=n=>nf1.format(n)+'%';
+const svg=(w,h,i)=>`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet" class="cx">${i}</svg>`;
+
+/* ---------- chart primitives ---------- */
+function areaLine(series,xl,o={}){
+  const w=o.w||460,h=o.h||210,padL=o.padL||44,padRp=o.dualR?46:12,padB=24,padT=10;
+  const fmtY=o.fmtY||f,fmtR=o.fmtR||f;
+  const plotW=w-padL-padRp,plotH=h-padB-padT,x0=padL,y0=h-padB;
+  const lft=series.filter(s=>s.axis!=='r'),rgt=series.filter(s=>s.axis==='r');
+  const maxL=Math.max(...[].concat(...lft.map(s=>s.data)))*1.18;
+  const maxR=rgt.length?Math.max(...[].concat(...rgt.map(s=>s.data)))*1.18:1;
+  const n=xl.length,sx=i=>x0+plotW*(n===1?.5:i/(n-1)),syL=v=>y0-plotH*v/maxL,syR=v=>y0-plotH*v/maxR;
+  let g='';
+  for(let i=0;i<=4;i++){const gy=y0-plotH*i/4;
+    g+=`<line x1="${x0}" y1="${gy}" x2="${w-padRp}" y2="${gy}" stroke="${C.grid}"/>`;
+    g+=`<text x="${x0-5}" y="${gy+3}" text-anchor="end" class="ax">${fmtY(maxL*i/4)}</text>`;
+    if(o.dualR)g+=`<text x="${w-padRp+4}" y="${gy+3}" class="ax">${fmtR(maxR*i/4)}</text>`;}
+  xl.forEach((l,i)=>{if(n<=8||i%Math.ceil(n/8)===0)g+=`<text x="${sx(i)}" y="${y0+14}" text-anchor="middle" class="axx">${l}</text>`;});
+  series.forEach(s=>{const sy=s.axis==='r'?syR:syL;const pts=s.data.map((v,i)=>`${sx(i).toFixed(1)},${sy(v).toFixed(1)}`).join(' ');
+    if(s.area)g+=`<polygon points="${x0},${y0} ${pts} ${sx(n-1)},${y0}" fill="${s.color}" opacity=".12"/>`;
+    g+=`<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2" stroke-dasharray="${s.dash||''}"/>`;
+    if(s.dots!==false&&n<=13)s.data.forEach((v,i)=>g+=`<circle cx="${sx(i)}" cy="${sy(v)}" r="2.3" fill="${s.color}"/>`);});
+  return svg(w,h,g);
+}
+function combo(xl,bars,line,o={}){
+  const w=o.w||460,h=o.h||210,padL=o.padL||50,padRp=44,padB=24,padT=10;
+  const fmtY=o.fmtY||money,fmtR=o.fmtR||f;
+  const plotW=w-padL-padRp,plotH=h-padB-padT,x0=padL,y0=h-padB;
+  const maxB=Math.max(...bars.data)*1.25,maxR=Math.max(...line.data)*1.25;
+  const n=xl.length,gap=plotW/n,bw=gap*.5,sx=i=>x0+gap*i+gap/2,syB=v=>y0-plotH*v/maxB,syR=v=>y0-plotH*v/maxR;
+  let g='';
+  for(let i=0;i<=4;i++){const gy=y0-plotH*i/4;
+    g+=`<line x1="${x0}" y1="${gy}" x2="${w-padRp}" y2="${gy}" stroke="${C.grid}"/>`;
+    g+=`<text x="${x0-5}" y="${gy+3}" text-anchor="end" class="ax">${fmtY(maxB*i/4)}</text>`;
+    g+=`<text x="${w-padRp+4}" y="${gy+3}" class="ax">${fmtR(maxR*i/4)}</text>`;}
+  bars.data.forEach((v,i)=>{const bh=plotH*v/maxB;g+=`<rect x="${sx(i)-bw/2}" y="${y0-bh}" width="${bw}" height="${bh}" rx="2" fill="${bars.color}"/>`;});
+  xl.forEach((l,i)=>{if(n<=9||i%Math.ceil(n/9)===0)g+=`<text x="${sx(i)}" y="${y0+14}" text-anchor="middle" class="axx">${l}</text>`;});
+  const pts=line.data.map((v,i)=>`${sx(i)},${syR(v)}`).join(' ');
+  g+=`<polyline points="${pts}" fill="none" stroke="${line.color}" stroke-width="2.4"/>`;
+  line.data.forEach((v,i)=>g+=`<circle cx="${sx(i)}" cy="${syR(v)}" r="2.6" fill="${line.color}"/>`);
+  return svg(w,h,g);
+}
+function donut(data,o={}){
+  const w=o.w||270,h=o.h||200,r=o.r||66,th=o.th||24,cx=78,cy=h/2;
+  const tot=data.reduce((a,d)=>a+d.v,0);let a0=-Math.PI/2,g='';
+  data.forEach((d,i)=>{const fr=d.v/tot,a1=a0+fr*2*Math.PI,lg=fr>.5?1:0;
+    const p=(rr,a)=>`${(cx+rr*Math.cos(a)).toFixed(1)} ${(cy+rr*Math.sin(a)).toFixed(1)}`;
+    g+=`<path d="M${p(r,a0)} A${r} ${r} 0 ${lg} 1 ${p(r,a1)} L${p(r-th,a1)} A${r-th} ${r-th} 0 ${lg} 0 ${p(r-th,a0)} Z" fill="${d.c||CAT[i]}"/>`;a0=a1;});
+  g+=`<text x="${cx}" y="${cy-2}" text-anchor="middle" style="font-size:15px;font-weight:700;fill:#20262b">${o.center||f(tot)}</text>`;
+  g+=`<text x="${cx}" y="${cy+13}" text-anchor="middle" class="ax">${o.centerL||''}</text>`;
+  let ly=20;data.forEach((d,i)=>{g+=`<rect x="${w-118}" y="${ly-8}" width="9" height="9" rx="2" fill="${d.c||CAT[i]}"/><text x="${w-104}" y="${ly}" class="lg">${d.l} · ${o.pctLegend?pct(d.v/tot*100):f(d.v)}</text>`;ly+=17;});
+  return svg(w,h,g);
+}
+function funnel(st,o={}){
+  const w=o.w||300,h=o.h||210,padT=6,availH=h-padT*2,sh=availH/st.length,mx=st[0].v;let g='';
+  st.forEach((s,i)=>{const wt=(s.v/mx)*(w-46),wb=((st[i+1]?st[i+1].v:s.v)/mx)*(w-46),cy=padT+sh*i,cx=w/2;
+    g+=`<polygon points="${cx-wt/2},${cy} ${cx+wt/2},${cy} ${cx+wb/2},${cy+sh*.8} ${cx-wb/2},${cy+sh*.8}" fill="${CAT[i]}" opacity=".92"/>`;
+    g+=`<text x="${cx}" y="${cy+sh*.37}" text-anchor="middle" class="fnv">${f(s.v)}</text>`;
+    g+=`<text x="${cx}" y="${cy+sh*.6}" text-anchor="middle" class="fnl">${s.l}${s.p!=null?' · '+s.p+'%':''}</text>`;});
+  return svg(w,h,g);
+}
+function pareto(data,o={}){
+  const w=o.w||470,h=o.h||220,padL=42,padRp=34,padB=32,padT=10;
+  const sd=[...data].sort((a,b)=>b.v-a.v),tot=sd.reduce((a,d)=>a+d.v,0);
+  const plotW=w-padL-padRp,plotH=h-padB-padT,x0=padL,y0=h-padB;
+  const maxB=Math.max(...sd.map(d=>d.v))*1.15,n=sd.length,gap=plotW/n,bw=gap*.62;
+  const sx=i=>x0+gap*i+gap/2,syB=v=>y0-plotH*v/maxB,syR=p=>y0-plotH*p/100;let g='',cum=0,lp=[];
+  for(let i=0;i<=4;i++){const gy=y0-plotH*i/4;
+    g+=`<line x1="${x0}" y1="${gy}" x2="${w-padRp}" y2="${gy}" stroke="${C.grid}"/>`;
+    g+=`<text x="${x0-5}" y="${gy+3}" text-anchor="end" class="ax">${f(maxB*i/4)}</text>`;
+    g+=`<text x="${w-padRp+4}" y="${gy+3}" class="ax">${Math.round(100*i/4)}%</text>`;}
+  sd.forEach((d,i)=>{const bh=plotH*d.v/maxB;g+=`<rect x="${sx(i)-bw/2}" y="${y0-bh}" width="${bw}" height="${bh}" rx="2" fill="${C.blue}"/>`;
+    cum+=d.v;lp.push(`${sx(i)},${syR(cum/tot*100)}`);
+    g+=`<text x="${sx(i)}" y="${y0+13}" text-anchor="middle" class="axx">${d.l}</text>`;});
+  g+=`<polyline points="${lp.join(' ')}" fill="none" stroke="${C.orange}" stroke-width="2.2"/>`;
+  lp.forEach(p=>{const[a,b]=p.split(',');g+=`<circle cx="${a}" cy="${b}" r="2.4" fill="${C.orange}"/>`;});
+  return svg(w,h,g);
+}
+function barsV(data,o={}){
+  const w=o.w||300,h=o.h||200,padL=o.padL||40,padB=24,padT=10,fmtY=o.fmtY||f;
+  const plotW=w-padL-10,plotH=h-padB-padT,x0=padL,y0=h-padB,max=Math.max(...data.map(d=>d.v))*1.18;
+  const n=data.length,gap=plotW/n,bw=gap*.58;let g='';
+  for(let i=0;i<=4;i++){const gy=y0-plotH*i/4;g+=`<line x1="${x0}" y1="${gy}" x2="${w-10}" y2="${gy}" stroke="${C.grid}"/><text x="${x0-5}" y="${gy+3}" text-anchor="end" class="ax">${fmtY(max*i/4)}</text>`;}
+  data.forEach((d,i)=>{const bh=plotH*d.v/max,bx=x0+gap*i+(gap-bw)/2;g+=`<rect x="${bx}" y="${y0-bh}" width="${bw}" height="${bh}" rx="2" fill="${d.c||o.color||C.green}"/><text x="${bx+bw/2}" y="${y0+14}" text-anchor="middle" class="axx">${d.l}</text>`;});
+  return svg(w,h,g);
+}
+function barH(data,o={}){
+  const max=Math.max(...data.map(d=>d.v))*1.04,fmtV=o.fmtV||f;let g='<div class="bh">';
+  data.forEach((d,i)=>{g+=`<div class="bhr"><span class="bhl">${d.l}</span><span class="bht"><span class="bhf" style="width:${(d.v/max*100).toFixed(1)}%;background:${d.c||o.color||C.green}"></span></span><span class="bhv">${fmtV(d.v)}</span></div>`;});
+  return g+'</div>';
+}
+function kpi(label,val,delta,cls,good=true){
+  const up=delta>=0,pos=(good===up),arr=up?'▲':'▼';
+  return `<div class="kpi ${cls||''}"><div class="kpi-l">${label}</div><div class="kpi-v">${val}</div><div class="kpi-d ${pos?'pos':'neg'}">${arr} ${Math.abs(delta)}% <span>vs per. ant.</span></div></div>`;
+}
+const obj=(span,title,body)=>`<div class="obj" style="grid-column:span ${span}"><div class="obj-h">${title}<span class="men">⋯</span></div><div class="obj-b">${body}</div></div>`;
+
+/* ---------- sample data ---------- */
+const M=['Ago','Sep','Oct','Nov','Dic','Ene','Feb','Mar','Abr','May','Jun','Jul'];
+const days=Array.from({length:30},(_,i)=>'d'+(i+1));
+const sesDia=days.map((_,i)=>{const base=6800+Math.sin(i/4.5)*900;const wk=(i%7>=5)?1.28:1;return Math.round((base+i*38)*wk+(i%3?200:-150));});
+const ventaMes=[38.2,36.9,41.5,52.8,61.3,44.1,39.7,45.2,47.9,49.6,46.3,48.7].map(v=>v*1e6);
+const invMes=[1.42,1.38,1.61,2.35,2.62,1.55,1.44,1.72,1.83,1.9,1.78,1.9].map(v=>v*1e6);
+const ingPautaMes=[9.1,8.6,10.4,15.8,17.9,9.9,9.1,11.2,11.9,12.6,11.7,12.4].map(v=>v*1e6);
+const sesMes=[172,168,181,214,239,188,176,197,205,212,201,209].map(v=>v*1e3);
+
+/* ============ SHEET 1 — Dashboard Integral ============ */
+function sheet1(){
+  let h='';
+  h+=`<div class="kpirow" style="grid-template-columns:repeat(6,1fr)">
+    ${kpi('Monto de Venta',money(48.7e6),4.8)}
+    ${kpi('ROAS · Online',nf1.format(6.2)+'x',3.1,'b')}
+    ${kpi('Tasa de Conversión',pct(1.9),-0.4,'p')}
+    ${kpi('Margen Bruto',pct(57.8),1.2,'t')}
+    ${kpi('Ticket Promedio',money(1184),2.6,'o')}
+    ${kpi('Sesiones',f(209000),8.4,'g')}
+  </div>`;
+  h+=obj(7,'Inversión en pauta vs Ingresos por pauta',
+    combo(M,{data:invMes,color:C.orange},{data:ingPautaMes,color:C.green},{fmtY:money,fmtR:money})+
+    `<div class="legend"><span><i style="background:${C.orange}"></i>Inversión pauta ($U)</span><span><i style="background:${C.green}"></i>Ingresos x pauta ($U)</span></div>`);
+  h+=obj(5,'Embudo online (GA)',
+    funnel([{l:'Sesiones',v:209000,p:100},{l:'Vieron producto',v:96500,p:46},{l:'Agregó al carrito',v:31200,p:15},{l:'Checkout',v:8900,p:4.3},{l:'Compras',v:3980,p:1.9}]));
+  h+=obj(7,'Sesiones (GA) vs Venta (ERP)',
+    areaLine([{data:sesMes,color:C.blue,area:true,axis:'l'},{data:ventaMes,color:C.green,axis:'r'}],M,{dualR:true,fmtY:v=>f(v/1e3)+'k',fmtR:money})+
+    `<div class="legend"><span><i style="background:${C.blue}"></i>Sesiones (izq)</span><span><i style="background:${C.green}"></i>Monto de venta (der)</span></div>`);
+  h+=obj(5,'ROAS por canal',
+    barH([{l:'Google Ads',v:7.8},{l:'Meta Ads',v:6.1},{l:'Email',v:9.4,c:C.teal},{l:'TikTok Ads',v:3.9,c:C.orange},{l:'Retargeting',v:5.2,c:C.purple}],{fmtV:v=>nf1.format(v)+'x',color:C.blue}));
+  h+=obj(4,'Venta Online vs Físico',
+    donut([{l:'Locales',v:39.4e6},{l:'E-commerce',v:9.3e6,c:C.blue}],{center:money(48.7e6),centerL:'Total venta',pctLegend:true}));
+  h+=obj(8,'Venta y margen por categoría',
+    combo(['Mujer','Hombre','Niños','Calzado','Access.','Deco'],
+      {data:[19.1e6,14.3e6,6.8e6,5.2e6,2.4e6,0.9e6],color:C.green},
+      {data:[59,56,54,49,63,61],color:C.gold},{fmtY:money,fmtR:v=>Math.round(v)+'%'})+
+    `<div class="legend"><span><i style="background:${C.green}"></i>Monto venta</span><span><i style="background:${C.gold}"></i>Margen bruto %</span></div>`);
+  return h;
+}
+
+/* ============ SHEET 2 — Comportamiento Web (GA) ============ */
+function sheet2(){
+  let h='';
+  h+=`<div class="kpirow" style="grid-template-columns:repeat(5,1fr)">
+    ${kpi('Sesiones / Tráfico',f(209000),8.4,'b')}
+    ${kpi('Tasa de Conversión',pct(1.9),-0.4,'p')}
+    ${kpi('ROAS · Online',nf1.format(6.2)+'x',3.1)}
+    ${kpi('Inversión en Pauta',money(1.9e6),9.1,'o')}
+    ${kpi('Ingresos x Pauta',money(11.8e6),6.7,'t')}
+  </div>`;
+  h+=obj(8,'Tráfico diario — Sesiones (últimos 30 días)',
+    areaLine([{data:sesDia,color:C.blue,area:true,dots:false}],days,{fmtY:v=>f(v/1e3)+'k'}));
+  h+=obj(4,'Sesiones por dispositivo',
+    donut([{l:'Mobile',v:141000},{l:'Desktop',v:52000,c:C.purple},{l:'Tablet',v:16000,c:C.orange}],{center:'67%',centerL:'mobile',pctLegend:true}));
+  h+=obj(5,'Sesiones por canal / fuente',
+    barH([{l:'Orgánico',v:71000},{l:'Paid Search',v:48000,c:C.blue},{l:'Meta',v:39000,c:C.purple},{l:'Directo',v:28000,c:C.teal},{l:'Email',v:14000,c:C.gold},{l:'TikTok',v:9000,c:C.orange}]));
+  h+=obj(3,'Embudo de conversión',
+    funnel([{l:'Sesiones',v:209000,p:100},{l:'Producto',v:96500,p:46},{l:'Carrito',v:31200,p:15},{l:'Compra',v:3980,p:1.9}],{w:230}));
+  h+=obj(4,'ROAS por campaña',
+    barH([{l:'Search Brand',v:12.4,c:C.green},{l:'Shopping',v:7.1,c:C.green},{l:'Meta Prosp.',v:4.8,c:C.blue},{l:'Meta Retarg.',v:8.9,c:C.blue},{l:'TikTok',v:3.9,c:C.orange}],{fmtV:v=>nf1.format(v)+'x'}));
+  h+=obj(6,'Inversión vs Ingresos por canal',
+    combo(['G.Ads','Meta','TikTok','Email','Retarg.'],
+      {data:[820000,540000,190000,60000,290000],color:C.orange},
+      {data:[6.4e6,3.3e6,0.74e6,0.56e6,1.5e6],color:C.green},{fmtY:money,fmtR:money})+
+    `<div class="legend"><span><i style="background:${C.orange}"></i>Inversión</span><span><i style="background:${C.green}"></i>Ingresos</span></div>`);
+  h+=obj(6,'Detalle de campañas',tableCampañas());
+  return h;
+}
+function tableCampañas(){
+  const rows=[
+    ['Search — Brand','G. Ads',68000,4.2,820000,6.4e6,12.4],
+    ['Shopping — Catálogo','G. Ads',412000,2.1,720000,5.1e6,7.1],
+    ['Meta — Prospecting','Meta',356000,1.3,540000,2.6e6,4.8],
+    ['Meta — Retargeting','Meta',88000,3.6,180000,1.6e6,8.9],
+    ['TikTok — Awareness','TikTok',290000,0.9,190000,0.74e6,3.9],
+    ['Email — CRM','Email',41000,5.8,60000,0.56e6,9.4],
+  ];
+  let t='<div style="overflow:auto;max-height:190px"><table><thead><tr><th>Campaña</th><th>Canal</th><th class="r">Sesiones</th><th class="r">Conv.%</th><th class="r">Inversión</th><th class="r">Ingresos</th><th class="r">ROAS</th></tr></thead><tbody>';
+  rows.forEach(r=>{const roas=r[6];const col=roas>=6?'#eef7ea':roas>=4?'#fff6e6':'#fdeceb';const cc=roas>=6?C.greenD:roas>=4?C.orange:C.red;
+    t+=`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="r">${f(r[2])}</td><td class="r">${nf1.format(r[3])}%</td><td class="r">${money(r[4])}</td><td class="r">${money(r[5])}</td><td class="r"><span class="chip" style="background:${col};color:${cc}">${nf1.format(roas)}x</span></td></tr>`;});
+  return t+'</tbody></table></div>';
+}
+
+/* ============ SHEET 3 — Comercial por Producto (ERP) ============ */
+function sheet3(){
+  let h='';
+  h+=`<div class="kpirow" style="grid-template-columns:repeat(7,1fr)">
+    ${kpi('Monto de Venta',money(48.7e6),4.8)}
+    ${kpi('Unidades Vendidas',f(67200),3.9,'b')}
+    ${kpi('Cantidad de Tickets',f(41150),1.5,'p')}
+    ${kpi('Margen Bruto',pct(57.8),1.2,'t')}
+    ${kpi('Drop Size',nf1.format(1.63)+' u/tk',2.4,'o')}
+    ${kpi('Ticket Promedio',money(1184),2.6,'g')}
+    ${kpi('Precio Promedio',money(725),1.1)}
+  </div>`;
+  h+=obj(6,'Monto de venta por categoría',
+    barsV([{l:'Mujer',v:19.1e6},{l:'Hombre',v:14.3e6,c:C.blue},{l:'Niños',v:6.8e6,c:C.purple},{l:'Calzado',v:5.2e6,c:C.teal},{l:'Access.',v:2.4e6,c:C.orange},{l:'Deco',v:0.9e6,c:C.gold}],{fmtY:money,padL:44}));
+  h+=obj(6,'Margen bruto % por categoría',
+    barH([{l:'Accesorios',v:63,c:C.green},{l:'Deco',v:61,c:C.green},{l:'Mujer',v:59,c:C.green},{l:'Hombre',v:56,c:C.gold},{l:'Niños',v:54,c:C.gold},{l:'Calzado',v:49,c:C.orange}],{fmtV:v=>v+'%'}));
+  h+=obj(7,'Unidades por producto (Pareto)',
+    pareto([{l:'Jean',v:11800},{l:'Remera',v:15200},{l:'Buzo',v:8400},{l:'Camisa',v:6100},{l:'Vestido',v:5300},{l:'Campera',v:3900},{l:'Calza',v:4700},{l:'Zapatilla',v:3100},{l:'Access.',v:8700}]));
+  h+=obj(5,'Drop size y ticket promedio',
+    areaLine([{data:[1.55,1.57,1.6,1.71,1.78,1.62,1.59,1.6,1.63,1.65,1.62,1.63],color:C.orange,axis:'l'},
+              {data:[1120,1105,1140,1290,1360,1150,1120,1160,1175,1190,1178,1184],color:C.green,axis:'r'}],M,
+      {dualR:true,fmtY:v=>nf1.format(v),fmtR:v=>f(v)})+
+    `<div class="legend"><span><i style="background:${C.orange}"></i>Drop size (u/ticket)</span><span><i style="background:${C.green}"></i>Ticket promedio $U</span></div>`);
+  h+=obj(12,'Detalle comercial por producto',tableProductos());
+  return h;
+}
+function tableProductos(){
+  const rows=[
+    ['Remera básica','Mujer',6.9e6,15200,61,454,9100],
+    ['Jean slim','Hombre',9.4e6,11800,54,797,7200],
+    ['Buzo canguro','Unisex',5.8e6,8400,58,690,5900],
+    ['Vestido midi','Mujer',5.3e6,5300,63,1000,4100],
+    ['Camisa lino','Hombre',4.2e6,6100,56,688,4600],
+    ['Campera puffer','Unisex',6.1e6,3900,49,1564,3100],
+    ['Zapatilla urbana','Calzado',5.2e6,3100,47,1677,2650],
+    ['Accesorios varios','Access.',2.4e6,8700,63,276,5100],
+  ];
+  let t='<div style="overflow:auto;max-height:200px"><table><thead><tr><th>Producto</th><th>Categoría</th><th class="r">Monto Venta</th><th class="r">Unidades</th><th class="r">Margen%</th><th class="r">Precio Prom.</th><th class="r">Tickets</th></tr></thead><tbody>';
+  rows.forEach(r=>{const m=r[4];const bg=m>=58?'#eef7ea':m>=52?'#fff6e6':'#fdeceb';const cc=m>=58?C.greenD:m>=52?C.orange:C.red;
+    t+=`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="r">${money(r[2])}</td><td class="r">${f(r[3])}</td><td class="r"><span class="chip" style="background:${bg};color:${cc}">${r[4]}%</span></td><td class="r">${money(r[5])}</td><td class="r">${f(r[6])}</td></tr>`;});
+  return t+'</tbody></table></div>';
+}
+
+/* ---------- mount + tabs ---------- */
+document.getElementById('s1').innerHTML=sheet1();
+document.getElementById('s2').innerHTML=sheet2();
+document.getElementById('s3').innerHTML=sheet3();
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.sheet').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');document.getElementById('s'+t.dataset.s).classList.add('on');
+}));
+</script>
